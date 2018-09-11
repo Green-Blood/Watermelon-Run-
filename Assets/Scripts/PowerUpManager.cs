@@ -60,10 +60,11 @@ public class PowerUpManager : MonoBehaviour {
 		doublePoints = points;
 		safeMode = safe;
 		powerupLengthCounter = time;
+        if (!powerupActive) {
+            normalPointsPerSecond = theScoreManager.pointsPerSecond;
+            spikeRate = thePlatformGenerator.randomSpikeThreshold;
 
-		normalPointsPerSecond = theScoreManager.pointsPerSecond;
-		spikeRate = thePlatformGenerator.randomSpikeThreshold;
-
+        }
 		if(safeMode)
 		{
 			spikeList = FindObjectsOfType<PlatformDestructor>();
@@ -78,6 +79,7 @@ public class PowerUpManager : MonoBehaviour {
 		}
 
 		powerupActive = true;
+
 
 
 

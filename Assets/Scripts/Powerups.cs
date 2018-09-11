@@ -22,11 +22,11 @@ public class Powerups : MonoBehaviour {
 		switch(powerSelector)
 		{
 			case 0:
-			doublePoints = true;
-			break;
+			    doublePoints = true;
+			    break;
 			case 1: 
-			safeMode = true;
-			break;
+			    safeMode = true;
+			    break;
 		}
 		GetComponent<SpriteRenderer>().sprite = powerUpSprites[powerSelector];
 
