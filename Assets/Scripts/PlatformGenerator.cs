@@ -33,6 +33,9 @@ public class PlatformGenerator : MonoBehaviour {
 	public float powerUpHeight;
 	public ObjectPooler powerUpPool;
 	public float powerUpThresHold;
+    private bool spikeOnTheLeft;
+    private float subtractPlatformDistance;
+    public float subtractPlatformDistanceOld;
 
 
 	// Use this for initialization
@@ -53,67 +56,98 @@ public class PlatformGenerator : MonoBehaviour {
 	void Update () {
 		if(transform.position.x < generationPoint.position.x)
 		{
-			//Randomize distance between platforms
-			distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
-			//Randomly pick a of platforms
-			platformSelector = Random.Range(0, theObjectPools.Length);
 
-			//Height Change
-			heightChange = transform.position.y + Random.Range(maxHeightChange, -maxHeightChange); 
+            platformGenerate();
 
-			if(heightChange > maxHeight)
-			{
-				heightChange = maxHeight;
-			}
-			else if(heightChange < minHeight)
-			{
-				heightChange = minHeight;
-			}
-			//Creating random powerups
-			if(Random.Range(0f, 100f) < powerUpThresHold)
-			{
-				GameObject newPowerUp = powerUpPool.GetPooledObject();
-				newPowerUp.transform.position = transform.position + new Vector3 (distanceBetween / 2f, Random.Range(powerUpHeight / 2f, powerUpHeight), 0f);
-				newPowerUp.SetActive(true);
-
-			}
-
-
-			//Move platform
-			transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2) + distanceBetween, heightChange, transform.position.z);
+            coinGenerate();
 			
-			
-			//Create new platform 
-			//Instantiate(/*thePlatform*/ thePlatforms[platformSelector], transform.position, transform.rotation);
-			
-
-			//Getting object pool
-			GameObject newPlatform = theObjectPools[platformSelector].GetPooledObject();
-
-			newPlatform.transform.position = transform.position;
-			newPlatform.transform.rotation = transform.rotation;
-			newPlatform.SetActive(true); 
-			if(Random.Range(0f,100f) < randomCoinThreshold)
-			{
-				//Generating random Coins
-				theCoinGenerator.SpawnCoins(new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z));
-
-			}
-			if(Random.Range(0f,100f) < randomSpikeThreshold)
-			{
-				//Generating random spikes
-				GameObject newSpike = spikePool.GetPooledObject();
-				float SpikeXPosition = Random.Range(-platformWidths[platformSelector] / 2f + 1f, platformWidths[platformSelector] / 2f - 1f );
-				Vector3 spikePosition = new Vector3(SpikeXPosition, 0.5f,0f);
-				newSpike.transform.position = transform.position + spikePosition;
-				newSpike.transform.rotation = transform.rotation;
-				newSpike.SetActive(true);
-			}
+			spikeGenerate();
 			
 			transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2), transform.position.y, transform.position.z);
-			
+            
 
 
 		}
 	}
+
+    // Generate the Platforms and the Powerups
+    void platformGenerate() {
+        //Randomize distance between platforms
+
+        // If spike is spawned on the left of the platform, then we make distanceBetweenMax smaller
+        if (spikeOnTheLeft) {
+            subtractPlatformDistance = subtractPlatformDistanceOld;
+            Debug.Log("subtractPlatformDistance = subtractPlatformDistanceOld = " + subtractPlatformDistance);
+            // Reset spikeOnTheLeft value
+            spikeOnTheLeft = false;
+        }
+        distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax - subtractPlatformDistance);
+        // Reset Platform distance
+        subtractPlatformDistance = 0.0f;
+        //Randomly pick a of platforms
+        platformSelector = Random.Range(0, theObjectPools.Length);
+
+        //Height Change
+        heightChange = transform.position.y + Random.Range(maxHeightChange, -maxHeightChange);
+
+        if (heightChange > maxHeight) {
+            heightChange = maxHeight;
+        }
+        else if (heightChange < minHeight) {
+            heightChange = minHeight;
+        }
+
+        // Generate Powerups
+        powerupGenerate();
+
+        //Move platform
+        transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2) + distanceBetween, heightChange, transform.position.z);
+
+        //Getting object pool
+        GameObject newPlatform = theObjectPools[platformSelector].GetPooledObject();
+
+        newPlatform.transform.position = transform.position;
+        newPlatform.transform.rotation = transform.rotation;
+        newPlatform.SetActive(true); 
+    }
+
+
+
+    // Generate powerups
+    void powerupGenerate() {
+        //Creating random powerups
+        if (Random.Range(0f, 100f) < powerUpThresHold) {
+            GameObject newPowerUp = powerUpPool.GetPooledObject();
+            newPowerUp.transform.position = transform.position + new Vector3(distanceBetween / 2f, Random.Range(powerUpHeight / 2f, powerUpHeight), 0f);
+            newPowerUp.SetActive(true);
+
+        }
+    }
+
+    // Generate Coins
+    void coinGenerate() {
+        if (Random.Range(0f, 100f) < randomCoinThreshold) {
+            //Generating random Coins
+            theCoinGenerator.SpawnCoins(new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z));
+
+        }
+    }
+
+
+    // Generate Spikes
+    void spikeGenerate() {
+        if (Random.Range(0f, 100f) < randomSpikeThreshold) {
+            //Generating random spikes
+            GameObject newSpike = spikePool.GetPooledObject();
+            float SpikeXPosition = Random.Range(-platformWidths[platformSelector] / 2f + 1f, platformWidths[platformSelector] / 2f - 1f);
+            if (SpikeXPosition == -platformWidths[platformSelector] / 2f + 1f) {
+                // spikeOnTheLeft = true;
+                Debug.Log("SpikeOnTheLeft = true");
+            }
+            Vector3 spikePosition = new Vector3(SpikeXPosition, 0.5f, 0f);
+            newSpike.transform.position = transform.position + spikePosition;
+            newSpike.transform.rotation = transform.rotation;
+            newSpike.SetActive(true);
+        }
+    }
 }

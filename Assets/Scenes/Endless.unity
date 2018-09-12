@@ -2758,6 +2758,7 @@ MonoBehaviour:
   powerUpHeight: 3
   powerUpPool: {fileID: 635998046}
   powerUpThresHold: 15
+  subtractPlatformDistanceOld: 0
 --- !u!4 &1007432487
 Transform:
   m_ObjectHideFlags: 0
