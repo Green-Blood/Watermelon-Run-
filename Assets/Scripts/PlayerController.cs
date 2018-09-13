@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour {
 
@@ -70,7 +71,7 @@ public class PlayerController : MonoBehaviour {
 		//Movement of the player 
 		myRigidbody.velocity = new Vector2(moveSpeed, myRigidbody.velocity.y);
 		//Check if the player press the space,mouse or upArrow, then jump!
-		if((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.UpArrow)) )
+		if(((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.UpArrow))) && !EventSystem.current.IsPointerOverGameObject())
 		{
 			if(grounded)
 			{
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviour {
 			
 		}
 		//Check again,but this time, check also time.
-		if((Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0) || Input.GetKey(KeyCode.UpArrow)) && !stoppedJumping )
+		if((Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0) || Input.GetKey(KeyCode.UpArrow)) && !stoppedJumping)
 		{
 			if(jumpTimeCounter > 0)
 			{

@@ -4324,6 +4324,7 @@ MonoBehaviour:
   platformGenerator: {fileID: 1007432487}
   thePlayer: {fileID: 1921302172}
   theDeathScreen: {fileID: 871351203}
+  pauseButton: {fileID: 904069419}
   powerUpReset: 0
 --- !u!4 &1964634536
 Transform:
