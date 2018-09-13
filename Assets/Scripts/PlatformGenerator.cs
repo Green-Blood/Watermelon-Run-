@@ -77,7 +77,6 @@ public class PlatformGenerator : MonoBehaviour {
         // If spike is spawned on the left of the platform, then we make distanceBetweenMax smaller
         if (spikeOnTheLeft) {
             subtractPlatformDistance = subtractPlatformDistanceOld;
-            Debug.Log("subtractPlatformDistance = subtractPlatformDistanceOld = " + subtractPlatformDistance);
             // Reset spikeOnTheLeft value
             spikeOnTheLeft = false;
         }
@@ -103,6 +102,7 @@ public class PlatformGenerator : MonoBehaviour {
 
         //Move platform
         transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2) + distanceBetween, heightChange, transform.position.z);
+
         spikeGenerate();
         //Getting object pool
         GameObject newPlatform = theObjectPools[platformSelector].GetPooledObject();
@@ -129,7 +129,7 @@ public class PlatformGenerator : MonoBehaviour {
     void coinGenerate() {
         if (Random.Range(0f, 100f) < randomCoinThreshold) {
             //Generating random Coins
-            theCoinGenerator.SpawnCoins(new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z));
+            theCoinGenerator.SpawnCoins(platformSelector, platformWidths[platformSelector], new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z));
 
         }
     }
@@ -143,7 +143,6 @@ public class PlatformGenerator : MonoBehaviour {
             float SpikeXPosition = Random.Range(-platformWidths[platformSelector] / 2f + 1f, platformWidths[platformSelector] / 2f - 1f);
             if (SpikeXPosition == -platformWidths[platformSelector] / 2f + 1f) {
                  spikeOnTheLeft = true;
-                Debug.Log("SpikeOnTheLeft = true");
             }
             Vector3 spikePosition = new Vector3(SpikeXPosition, 0.5f, 0f);
             newSpike.transform.position = transform.position + spikePosition;
