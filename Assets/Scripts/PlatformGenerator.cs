@@ -61,7 +61,7 @@ public class PlatformGenerator : MonoBehaviour {
 
             coinGenerate();
 			
-			spikeGenerate();
+			//spikeGenerate();
 			
 			transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2), transform.position.y, transform.position.z);
             
@@ -91,6 +91,7 @@ public class PlatformGenerator : MonoBehaviour {
         heightChange = transform.position.y + Random.Range(maxHeightChange, -maxHeightChange);
 
         if (heightChange > maxHeight) {
+
             heightChange = maxHeight;
         }
         else if (heightChange < minHeight) {
@@ -102,7 +103,7 @@ public class PlatformGenerator : MonoBehaviour {
 
         //Move platform
         transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2) + distanceBetween, heightChange, transform.position.z);
-
+        spikeGenerate();
         //Getting object pool
         GameObject newPlatform = theObjectPools[platformSelector].GetPooledObject();
 
@@ -141,7 +142,7 @@ public class PlatformGenerator : MonoBehaviour {
             GameObject newSpike = spikePool.GetPooledObject();
             float SpikeXPosition = Random.Range(-platformWidths[platformSelector] / 2f + 1f, platformWidths[platformSelector] / 2f - 1f);
             if (SpikeXPosition == -platformWidths[platformSelector] / 2f + 1f) {
-                // spikeOnTheLeft = true;
+                 spikeOnTheLeft = true;
                 Debug.Log("SpikeOnTheLeft = true");
             }
             Vector3 spikePosition = new Vector3(SpikeXPosition, 0.5f, 0f);
