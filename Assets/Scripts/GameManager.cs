@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour {
 	private PlatformDestructor[] platformList;
 	private ScoreManager theScoreManager;
 	public DeathMenu theDeathScreen;
+	public GameObject pauseButton;
+	
 	public bool powerUpReset;
 	// Use this for initialization
 	void Start () {
@@ -27,12 +29,16 @@ public class GameManager : MonoBehaviour {
 	{
 		theScoreManager.scoreIncreasing = false;
 		thePlayer.gameObject.SetActive(false);
+		
 		theDeathScreen.gameObject.SetActive(true);
+		pauseButton.SetActive(false);
+		
 		//StartCoroutine("RestartGameCo");
 	}
 	public void Reset()
 	{
 		theDeathScreen.gameObject.SetActive(false);
+		pauseButton.SetActive(true);
 		platformList = FindObjectsOfType<PlatformDestructor>();
 		for(int i = 0; i < platformList.Length; i++)
 		{
