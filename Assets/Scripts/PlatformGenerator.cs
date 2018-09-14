@@ -148,6 +148,7 @@ public class PlatformGenerator : MonoBehaviour {
             newSpike.transform.position = transform.position + spikePosition;
             newSpike.transform.rotation = transform.rotation;
             newSpike.SetActive(true);
+
         }
     }
 }

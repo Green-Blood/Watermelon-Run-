@@ -117,7 +117,6 @@ public class PlayerController : MonoBehaviour {
 	}
 	//Collisions
 	void OnCollisionEnter2D(Collision2D other)
-	
 	{
 		if(other.gameObject.tag == "killbox")
 		{
@@ -129,6 +128,8 @@ public class PlayerController : MonoBehaviour {
 			deathSound.Play();
 		}
 	}
+
+    
 	
 
 }

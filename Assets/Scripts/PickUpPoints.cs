@@ -5,11 +5,13 @@ using UnityEngine;
 public class PickUpPoints : MonoBehaviour {
 	public int scoreToGive;
 	private ScoreManager theScoreManager;
+    private CoinGenerator theCoinGenerator;
 	private AudioSource coinSound;
 	// Use this for initialization
 	void Start () {
 		theScoreManager = FindObjectOfType<ScoreManager>();
 		coinSound = GameObject.Find("CoinSound").GetComponent<AudioSource>();
+        theCoinGenerator = FindObjectOfType<CoinGenerator>();
 	}
 	
 	// Update is called once per frame
@@ -26,11 +28,18 @@ public class PickUpPoints : MonoBehaviour {
 			{
 				coinSound.Stop();
 				coinSound.Play();
+
 			}
 			else
 			{
 				coinSound.Play();
 			}			
 		}
+        if (other.gameObject.tag == "killbox") {
+            Debug.Log("Collided");
+            theCoinGenerator.IsCollidedWithSpike();
+        }
+        
+        
 	}
 }

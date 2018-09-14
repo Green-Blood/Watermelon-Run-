@@ -2753,7 +2753,7 @@ MonoBehaviour:
   maxHeightPoint: {fileID: 763601995}
   maxHeightChange: 10
   randomCoinThreshold: 100
-  randomSpikeThreshold: 0
+  randomSpikeThreshold: 100
   spikePool: {fileID: 467844471}
   powerUpHeight: 3
   powerUpPool: {fileID: 635998046}
