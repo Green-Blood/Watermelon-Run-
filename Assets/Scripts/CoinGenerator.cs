@@ -33,7 +33,10 @@ public class CoinGenerator : MonoBehaviour {
         coin = new GameObject[numberOfBlocks];
         // Getting Random number of coins
         numberOfCoins = Random.Range(1, numberOfBlocks + 1);
-
+        if (numberOfCoins > numberOfBlocks - firstStartingPoint) {
+            numberOfCoins = numberOfBlocks - firstStartingPoint;
+            Debug.Log(numberOfCoins);
+        }
         for (int i = 0; i < numberOfCoins; i++) {
             coin[i] = coinPool.GetPooledObject();
             coin[i].transform.position = new Vector3(startPosition.x - (platformWidth / 2) + (distanceBetweenCoins / 2) + firstStartingPoint + i, startPosition.y, startPosition.z);
