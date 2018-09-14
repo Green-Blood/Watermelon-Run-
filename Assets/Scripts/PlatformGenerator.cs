@@ -129,8 +129,8 @@ public class PlatformGenerator : MonoBehaviour {
     void coinGenerate() {
         if (Random.Range(0f, 100f) < randomCoinThreshold) {
             //Generating random Coins
-            theCoinGenerator.SpawnCoins(platformSelector, platformWidths[platformSelector], new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z));
-
+            theCoinGenerator.SpawnCoins(platformSelector, platformWidths[platformSelector], new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z));
+          
         }
     }
 
@@ -148,6 +148,7 @@ public class PlatformGenerator : MonoBehaviour {
             newSpike.transform.position = transform.position + spikePosition;
             newSpike.transform.rotation = transform.rotation;
             newSpike.SetActive(true);
+           
 
         }
     }
