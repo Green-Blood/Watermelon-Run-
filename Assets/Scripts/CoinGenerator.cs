@@ -39,14 +39,17 @@ public class CoinGenerator : MonoBehaviour {
             numberOfCoins = numberOfBlocks - firstStartingPoint;
         }
         for (int i = 0; i < numberOfCoins; i++) {
-            if (isCollidedWithSpike) {
-                isCollidedWithSpike = false;
-                Debug.Log("this is collision function");
-                break;
-            }
+            
             coin[i] = coinPool.GetPooledObject();
             coin[i].transform.position = new Vector3(startPosition.x - (platformWidth / 2) + (distanceBetweenCoins / 2) + firstStartingPoint + i, startPosition.y, startPosition.z);
             coin[i].SetActive(true);
+
+            if (isCollidedWithSpike) {
+                isCollidedWithSpike = false;
+                Debug.Log("this is collision function");
+                //break;
+                coin[i].SetActive(false);
+            }
         }
        // coin = coinPool.GetPooledObject();
        // coin.transform.position = new Vector3(startPosition.x - (platformWidth / 2) + (distanceBetweenCoins / 2), startPosition.y, startPosition.z);
@@ -64,9 +67,6 @@ public class CoinGenerator : MonoBehaviour {
 		coin3.SetActive(true);
          * */
 	}
-
-
-
     public void IsCollidedWithSpike() {
         isCollidedWithSpike = true;
     }
