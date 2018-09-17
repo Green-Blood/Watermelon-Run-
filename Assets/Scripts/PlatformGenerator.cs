@@ -144,7 +144,7 @@ public class PlatformGenerator : MonoBehaviour {
             if (SpikeXPosition == -platformWidths[platformSelector] / 2f + 1f) {
                  spikeOnTheLeft = true;
             }
-            Vector3 spikePosition = new Vector3(SpikeXPosition, 0.5f, 0f);
+            Vector3 spikePosition = new Vector3(SpikeXPosition, 0.4f, 0f);
             newSpike.transform.position = transform.position + spikePosition;
             newSpike.transform.rotation = transform.rotation;
             newSpike.SetActive(true);

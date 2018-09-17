@@ -45,9 +45,21 @@ TagManager:
   - name: Background
     uniqueID: 3965829283
     locked: 0
+  - name: Moving background
+    uniqueID: 2553069807
+    locked: 0
   - name: Player
     uniqueID: 721183357
     locked: 0
   - name: Platforms
     uniqueID: 2115098197
+    locked: 0
+  - name: Coin
+    uniqueID: 3573289387
+    locked: 0
+  - name: Spikes
+    uniqueID: 3520486759
+    locked: 0
+  - name: Powerups
+    uniqueID: 1848639419
     locked: 0
