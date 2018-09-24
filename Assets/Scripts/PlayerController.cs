@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour {
 	
 	public AudioSource jumpSound;
 	public AudioSource deathSound;
-	
+    public PowerUpManager thePowerUpManager;
 	// Use this for initialization
 	void Start () {
 		myRigidbody = GetComponent<Rigidbody2D>();
@@ -118,15 +118,17 @@ public class PlayerController : MonoBehaviour {
 	//Collisions
 	void OnCollisionEnter2D(Collision2D other)
 	{
-		if(other.gameObject.tag == "killbox")
-		{
-			
-			theGameManager.RestartGame();
-			moveSpeed = moveSpeedStore;
-			speedMilestoneCount = speedMilestoneCountStore;
-			speedIncreaseMilestone = speedMilestoneCountStore;
-			deathSound.Play();
-		}
+       
+        if (other.gameObject.tag == "killbox") {
+
+            theGameManager.RestartGame();
+            moveSpeed = moveSpeedStore;
+            speedMilestoneCount = speedMilestoneCountStore;
+            speedIncreaseMilestone = speedMilestoneCountStore;
+            deathSound.Play();
+        }
+       
+		
 	}
 
     

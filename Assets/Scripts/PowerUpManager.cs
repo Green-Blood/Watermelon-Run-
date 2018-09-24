@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PowerUpManager : MonoBehaviour {
 
+    
 	private bool doublePoints;
 	private bool safeMode;
+    public bool shield;
+    private bool rocketSpeed;
 
 	private bool powerupActive;
 	private float powerupLengthCounter;
@@ -15,16 +18,23 @@ public class PowerUpManager : MonoBehaviour {
 	private float normalPointsPerSecond;
 	private float spikeRate;
 	private PlatformDestructor[] spikeList;
-	
+    public SpikeScript[] spikeCollider;
+    private ShieldController theShieldController;
+
+    public bool GetShield() {
+        return shield;
+    }
 	// Use this for initialization
-	void Start () {
-		theScoreManager = FindObjectOfType<ScoreManager>();
-		thePlatformGenerator = FindObjectOfType<PlatformGenerator>();
-		theGameManager = FindObjectOfType<GameManager>();
-	}
-	
+    void Start() {
+        theScoreManager = FindObjectOfType<ScoreManager>();
+        thePlatformGenerator = FindObjectOfType<PlatformGenerator>();
+        theGameManager = FindObjectOfType<GameManager>();
+        theShieldController = FindObjectOfType<ShieldController>();
+        
+    }
 	// Update is called once per frame
 	void Update () {
+        
 		if(powerupActive)
 		{
 			powerupLengthCounter -= Time.deltaTime;
@@ -42,23 +52,34 @@ public class PowerUpManager : MonoBehaviour {
 				theScoreManager.shouldDouble = true;
 
 			}
+            
 			if (safeMode)
 			{
 				thePlatformGenerator.randomSpikeThreshold = 0f;
 			}
+            if (shield) {
+                spikeTrigger(true);
+            }
 			if(powerupLengthCounter <= 0 )
 			{
 				theScoreManager.pointsPerSecond = normalPointsPerSecond;
 				theScoreManager.shouldDouble = false;
-				thePlatformGenerator.randomSpikeThreshold = spikeRate;
+                spikeTrigger(false);
+                //spikeCollider.isTrigger = false;
+               // Debug.Log("Spike Collider = " + spikeCollider.isTrigger);
+                thePlatformGenerator.randomSpikeThreshold = spikeRate;
 				powerupActive = false;
+
 			}
 		}
 	}
-	public void ActivatePowerup(bool points, bool safe, float time)
+	public void ActivatePowerup(bool points, bool safe, bool shieldPower, bool rocket, float time)
 	{
 		doublePoints = points;
 		safeMode = safe;
+        shield = shieldPower;
+        rocketSpeed = rocket;
+
 		powerupLengthCounter = time;
         if (!powerupActive) {
             normalPointsPerSecond = theScoreManager.pointsPerSecond;
@@ -77,6 +98,7 @@ public class PowerUpManager : MonoBehaviour {
 				
 			}
 		}
+        
 
 		powerupActive = true;
 
@@ -84,4 +106,15 @@ public class PowerUpManager : MonoBehaviour {
 
 
 	}
+
+
+
+    void spikeTrigger(bool cond) {
+        spikeCollider = FindObjectsOfType<SpikeScript>();
+        //theShieldController.setActive(cond);
+        for (int i = 0; i < spikeCollider.Length; i++) {
+            spikeCollider[i].GetComponent<EdgeCollider2D>().isTrigger = cond;
+        }
+    }
+
 }

@@ -36,7 +36,6 @@ public class PickUpPoints : MonoBehaviour {
 			}			
 		}
         if (other.gameObject.tag == "killbox") {
-            Debug.Log("Collided");
             theCoinGenerator.IsCollidedWithSpike();
         }
         

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212857737934881448}
   - component: {fileID: 114318909063740754}
   - component: {fileID: 68253710725480438}
+  - component: {fileID: 114939420732610852}
   m_Layer: 0
   m_Name: spikes
   m_TagString: killbox
@@ -90,6 +91,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformDestructionPoint: {fileID: 0}
+--- !u!114 &114939420732610852
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1470634054938246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1c2ef4dfd4a6f4e8e5fe127d2d3458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212857737934881448
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -123,7 +135,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -774480537
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 936a3126c56e15b498949475335948a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

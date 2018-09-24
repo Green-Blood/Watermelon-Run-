@@ -5,6 +5,8 @@ using UnityEngine;
 public class Powerups : MonoBehaviour {
 	public bool doublePoints;
 	public bool safeMode;
+    public bool shield;
+    public bool rocketSpeed;
 
 	public float powerupLenght;
 	private PowerUpManager thePowerUpManager;
@@ -17,7 +19,7 @@ public class Powerups : MonoBehaviour {
 
 	void Awake()
 	{
-		int powerSelector = Random.Range(0, 2);
+		int powerSelector = Random.Range(2, 3);
 		
 		switch(powerSelector)
 		{
@@ -27,6 +29,12 @@ public class Powerups : MonoBehaviour {
 			case 1: 
 			    safeMode = true;
 			    break;
+            case 2:
+                shield = true;
+                break;
+            case 3:
+                rocketSpeed = true;
+                break;
 		}
 		GetComponent<SpriteRenderer>().sprite = powerUpSprites[powerSelector];
 
@@ -36,7 +44,7 @@ public class Powerups : MonoBehaviour {
 	{
 		if (other.name == "Player")
 		{
-			thePowerUpManager.ActivatePowerup(doublePoints, safeMode, powerupLenght);
+			thePowerUpManager.ActivatePowerup(doublePoints, safeMode, shield, rocketSpeed, powerupLenght);
 		}
 		gameObject.SetActive(false);
 		
