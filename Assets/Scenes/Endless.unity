@@ -2040,6 +2040,7 @@ MonoBehaviour:
   shield: 0
   spikeCollider:
   - {fileID: 0}
+  theShieldController: {fileID: 242911439}
 --- !u!4 &748158946
 Transform:
   m_ObjectHideFlags: 0
@@ -2998,7 +2999,7 @@ MonoBehaviour:
   spikePool: {fileID: 467844471}
   powerUpHeight: 3
   powerUpPool: {fileID: 635998046}
-  powerUpThresHold: 15
+  powerUpThresHold: 100
   subtractPlatformDistanceOld: 1
 --- !u!4 &1007432487
 Transform:

@@ -17,7 +17,7 @@ public class ShieldController : MonoBehaviour
 void Start () 
 {
     theShieldController = FindObjectOfType<ShieldController>();
-    theShieldController.setActive(false);
+    theShieldController.gameObject.SetActive(false);
 }
 
 void Update () 
@@ -25,7 +25,7 @@ void Update ()
 
 }
 
-public void setActive(bool cond) {
-    theShieldController.setActive(cond);
-}
+// public void setActive(bool cond) {
+//     theShieldController.gameObject.SetActive(cond);
+// }
 }

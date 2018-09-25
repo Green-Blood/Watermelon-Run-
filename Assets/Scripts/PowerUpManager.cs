@@ -19,7 +19,7 @@ public class PowerUpManager : MonoBehaviour {
 	private float spikeRate;
 	private PlatformDestructor[] spikeList;
     public SpikeScript[] spikeCollider;
-    private ShieldController theShieldController;
+    public ShieldController theShieldController;
 
     public bool GetShield() {
         return shield;
@@ -29,7 +29,7 @@ public class PowerUpManager : MonoBehaviour {
         theScoreManager = FindObjectOfType<ScoreManager>();
         thePlatformGenerator = FindObjectOfType<PlatformGenerator>();
         theGameManager = FindObjectOfType<GameManager>();
-        theShieldController = FindObjectOfType<ShieldController>();
+        //theShieldController = FindObjectOfType<ShieldController>();
         
     }
 	// Update is called once per frame
@@ -112,9 +112,12 @@ public class PowerUpManager : MonoBehaviour {
     void spikeTrigger(bool cond) {
         spikeCollider = FindObjectsOfType<SpikeScript>();
         //theShieldController.setActive(cond);
+		theShieldController.gameObject.SetActive(cond);
         for (int i = 0; i < spikeCollider.Length; i++) {
             spikeCollider[i].GetComponent<EdgeCollider2D>().isTrigger = cond;
+			
         }
+		
     }
 
 }
