@@ -43,6 +43,7 @@ public class PowerUpManager : MonoBehaviour {
 			{
 				powerupLengthCounter = 0;
 				theGameManager.powerUpReset = false;
+                
 			}
 
 
@@ -79,12 +80,10 @@ public class PowerUpManager : MonoBehaviour {
 		safeMode = safe;
         shield = shieldPower;
         rocketSpeed = rocket;
-
 		powerupLengthCounter = time;
         if (!powerupActive) {
             normalPointsPerSecond = theScoreManager.pointsPerSecond;
             spikeRate = thePlatformGenerator.randomSpikeThreshold;
-
         }
 		if(safeMode)
 		{
@@ -95,27 +94,19 @@ public class PowerUpManager : MonoBehaviour {
 				{
 					spikeList[i].gameObject.SetActive(false);
 				}
-				
 			}
 		}
-        
-
 		powerupActive = true;
-
-
-
-
 	}
 
 
 
-    void spikeTrigger(bool cond) {
+    public void spikeTrigger(bool cond) {
         spikeCollider = FindObjectsOfType<SpikeScript>();
         //theShieldController.setActive(cond);
 		theShieldController.gameObject.SetActive(cond);
         for (int i = 0; i < spikeCollider.Length; i++) {
             spikeCollider[i].GetComponent<EdgeCollider2D>().isTrigger = cond;
-			
         }
 		
     }

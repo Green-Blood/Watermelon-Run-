@@ -32,7 +32,8 @@ public class GameManager : MonoBehaviour {
 		
 		theDeathScreen.gameObject.SetActive(true);
 		pauseButton.SetActive(false);
-		
+
+       
 		//StartCoroutine("RestartGameCo");
 	}
 	public void Reset()
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour {
 		theScoreManager.scoreCount = 0;
 		theScoreManager.scoreIncreasing = true;
 		powerUpReset = true;
+
 	}
 	/*public IEnumerator RestartGameCo()
 	{

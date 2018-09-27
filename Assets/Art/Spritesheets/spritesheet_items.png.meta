@@ -8,6 +8,7 @@ TextureImporter:
     21300006: spritesheet_items_3
     21300008: spritesheet_items_4
     21300010: spritesheet_items_5
+    21300012: spritesheet_items_6
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -211,7 +212,7 @@ TextureImporter:
         width: 65
         height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -231,13 +232,33 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 41f3420101ba01b479f34e47513aee4a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet_items_6
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 40
+        width: 70
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f09948fd3e7526e4b8e3dc36b3058dfc
       vertices: []
       indices: 
       edges: []

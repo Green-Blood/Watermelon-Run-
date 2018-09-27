@@ -147,9 +147,8 @@ public class PlatformGenerator : MonoBehaviour {
             Vector3 spikePosition = new Vector3(SpikeXPosition, 0.4f, 0f);
             newSpike.transform.position = transform.position + spikePosition;
             newSpike.transform.rotation = transform.rotation;
+            newSpike.GetComponent<EdgeCollider2D>().isTrigger = false;
             newSpike.SetActive(true);
-           
-
         }
     }
 }
