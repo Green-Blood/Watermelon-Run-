@@ -2995,12 +2995,12 @@ MonoBehaviour:
   - {fileID: 1187471263}
   maxHeightPoint: {fileID: 763601995}
   maxHeightChange: 10
-  randomCoinThreshold: 100
-  randomSpikeThreshold: 100
+  randomCoinThreshold: 15
+  randomSpikeThreshold: 20
   spikePool: {fileID: 467844471}
   powerUpHeight: 3
   powerUpPool: {fileID: 635998046}
-  powerUpThresHold: 100
+  powerUpThresHold: 15
   subtractPlatformDistanceOld: 1
 --- !u!4 &1007432487
 Transform:

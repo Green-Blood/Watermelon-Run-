@@ -19,7 +19,7 @@ public class Powerups : MonoBehaviour {
 
 	void Awake()
 	{
-		int powerSelector = Random.Range(3, 4);
+		int powerSelector = Random.Range(0, 4);
 		
 		switch(powerSelector)
 		{
