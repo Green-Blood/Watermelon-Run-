@@ -15,19 +15,21 @@ public class ScrollingBackground : MonoBehaviour
   #region Variables
 
   public float backgroundSize;
+  public float parallaxSpeed;
 
   private Transform cameraTransform;
   private Transform[] layers;
   private float viewZone = 10;
   private int leftIndex;
   private int rightIndex;
-
+  private float lastCameraX;
 
   #endregion
 
   void Start()
   {
     cameraTransform = FindObjectOfType<CameraController>().transform;
+    lastCameraX = cameraTransform.position.x;
     layers = new Transform[transform.childCount];
     for (int i = 0; i < transform.childCount; i++)
     {
@@ -39,10 +41,14 @@ public class ScrollingBackground : MonoBehaviour
 
   void Update()
   {
+    float deltaX = cameraTransform.position.x - lastCameraX;
+    transform.position += Vector3.right * (deltaX * parallaxSpeed);
+    lastCameraX = cameraTransform.position.x;
     // if (cameraTransform.position.x < (layers[leftIndex].transform.position.x + viewZone))
     // {
     //   ScrollLeft();
     // }
+
     if (cameraTransform.position.x > (layers[rightIndex].transform.position.x - viewZone))
     {
       ScrollRight();
