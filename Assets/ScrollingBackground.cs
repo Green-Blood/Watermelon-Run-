@@ -8,19 +8,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ScrollingBackground : MonoBehaviour 
-{
-#region Variables
 
-#endregion
-
-void Start () 
+public class ScrollingBackground : MonoBehaviour
 {
 
-}
+  #region Variables
+    private Transform cameraTransform;
 
-void Update () 
-{
+    private Transform[] layers;
+    private float viewZone = 10;
+    private float leftIndex;
 
-}
+  #endregion
+
+  void Start()
+  {
+
+  }
+
+  void Update()
+  {
+
+  }
 }
