@@ -7,7 +7,7 @@ public class PowerUpManager : MonoBehaviour {
     
 	private bool doublePoints;
 	private bool safeMode;
-    public bool shield;
+    private bool shield;
     private bool rocketSpeed;
 
 	private bool powerupActive;
@@ -38,29 +38,26 @@ public class PowerUpManager : MonoBehaviour {
 		if(powerupActive)
 		{
 			powerupLengthCounter -= Time.deltaTime;
+			
+			if(doublePoints)
+			{
+				theScoreManager.pointsPerSecond = normalPointsPerSecond * 2;
+				theScoreManager.shouldDouble = true;
+			}
+			if (safeMode)
+			{
+				thePlatformGenerator.randomSpikeThreshold = 0f;
+			}
+            if (shield)
+			 {
+                spikeTrigger(true);
+            }
 			//reset powerups if the player is killed
 			if(theGameManager.powerUpReset)
 			{
 				powerupLengthCounter = 0;
 				theGameManager.powerUpReset = false;
-                
 			}
-
-
-			if(doublePoints)
-			{
-				theScoreManager.pointsPerSecond = normalPointsPerSecond * 2;
-				theScoreManager.shouldDouble = true;
-
-			}
-            
-			if (safeMode)
-			{
-				thePlatformGenerator.randomSpikeThreshold = 0f;
-			}
-            if (shield) {
-                spikeTrigger(true);
-            }
 			if(powerupLengthCounter <= 0 )
 			{
 				theScoreManager.pointsPerSecond = normalPointsPerSecond;
@@ -70,7 +67,6 @@ public class PowerUpManager : MonoBehaviour {
                // Debug.Log("Spike Collider = " + spikeCollider.isTrigger);
                 thePlatformGenerator.randomSpikeThreshold = spikeRate;
 				powerupActive = false;
-
 			}
 		}
 	}
@@ -95,6 +91,10 @@ public class PowerUpManager : MonoBehaviour {
 					spikeList[i].gameObject.SetActive(false);
 				}
 			}
+		}
+		if(!shield)
+		{
+			spikeTrigger(false);
 		}
 		powerupActive = true;
 	}
