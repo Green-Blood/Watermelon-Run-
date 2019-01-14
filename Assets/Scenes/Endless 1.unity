@@ -3421,7 +3421,7 @@ MonoBehaviour:
   thePlatform: {fileID: 1312953841499900, guid: 8e1f046b2ee878a46bf0ec009e9ea500,
     type: 2}
   generationPoint: {fileID: 2032324754}
-  distanceBetween: 0
+  distanceBetween: 3
   distanceBetweenMax: 1
   distanceBetweenMin: 5
   theObjectPools:
