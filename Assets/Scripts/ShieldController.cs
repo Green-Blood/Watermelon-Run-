@@ -8,26 +8,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ShieldController : MonoBehaviour 
+public class ShieldController : MonoBehaviour
 {
-#region Variables
-    private ShieldController theShieldController;
-    public PowerUpManager thePowerUpManager;
-#endregion
+  #region Variables
+  private ShieldController theShieldController;
+  public PowerUpManager thePowerUpManager;
+  #endregion
 
-void Start () 
-{
+  void Start()
+  {
     theShieldController = FindObjectOfType<ShieldController>();
     theShieldController.gameObject.SetActive(false);
     thePowerUpManager.spikeTrigger(false);
-}
+  }
 
-void Update () 
-{
+  void Update()
+  {
 
-}
+  }
 
-// public void setActive(bool cond) {
-//     theShieldController.gameObject.SetActive(cond);
-// }
+  // public void setActive(bool cond) {
+  //     theShieldController.gameObject.SetActive(cond);
+  // }
 }
