@@ -73,6 +73,14 @@ public class PlatformGenerator : MonoBehaviour
     }
   }
 
+  public float getMinHeight()
+  {
+    return minHeight;
+  }
+  public float getMaxHeight()
+  {
+    return maxHeight;
+  }
   // Generate the Platforms and the Powerups
   void platformGenerate()
   {
