@@ -14,8 +14,12 @@ public class CameraController : MonoBehaviour
 
   private float distanceToMove;
   public float offset;
+  public float minZoom;
+  public float maxZoom;
   public float zoomOutSpeed;
   public float zoomInSpeed;
+
+
 
 
   // Use this for initialization
@@ -54,19 +58,14 @@ public class CameraController : MonoBehaviour
 
     if (thePlayer.transform.position.y - offset > thePlatformGenerator.getMaxHeight())
     {
-      //Debug.Log("thePlayer.transform.position.y = " + thePlayer.transform.position.y);
-      //Debug.Log("thePlatformGenerator.getMaxHeight() = " + thePlatformGenerator.getMaxHeight());
       cam.orthographicSize += zoomOutSpeed * Time.deltaTime;
-      cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, 5, 10);
-      Debug.Log("cam.orthographicSize " + cam.orthographicSize);
-
-
+      cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
     }
     if (thePlayer.transform.position.y - offset < thePlatformGenerator.getMaxHeight())
     {
 
       cam.orthographicSize -= zoomInSpeed * Time.deltaTime;
-      cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, 5, 10);
+      cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
     }
 
   }

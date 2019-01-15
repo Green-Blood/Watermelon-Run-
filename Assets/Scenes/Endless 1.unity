@@ -1972,9 +1972,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df87f4c8bdc454441b0292fbdb373f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: 2
+  minZoom: 5
+  maxZoom: 10
   zoomOutSpeed: 3
   zoomInSpeed: 1
-  offset: 3.3
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
