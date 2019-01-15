@@ -6,13 +6,16 @@ public class CameraController : MonoBehaviour
 {
 
 
-  public PlayerController thePlayer;
+  private PlayerController thePlayer;
   private PlatformGenerator thePlatformGenerator;
   private Camera cam;
   private Vector3 lastPlayerPosition;
   private Vector3 lastCameraPosition;
 
   private float distanceToMove;
+  public float offset;
+  public float zoomOutSpeed;
+  public float zoomInSpeed;
 
 
   // Use this for initialization
@@ -49,15 +52,21 @@ public class CameraController : MonoBehaviour
     //Check where is Player now
     lastPlayerPosition = thePlayer.transform.position;
 
-    if (thePlayer.transform.position.y - 3 > thePlatformGenerator.getMaxHeight())
+    if (thePlayer.transform.position.y - offset > thePlatformGenerator.getMaxHeight())
     {
       //Debug.Log("thePlayer.transform.position.y = " + thePlayer.transform.position.y);
       //Debug.Log("thePlatformGenerator.getMaxHeight() = " + thePlatformGenerator.getMaxHeight());
-      cam.orthographicSize += thePlayer.transform.position.y - thePlatformGenerator.getMaxHeight();
+      cam.orthographicSize += zoomOutSpeed * Time.deltaTime;
       cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, 5, 10);
       Debug.Log("cam.orthographicSize " + cam.orthographicSize);
 
 
+    }
+    if (thePlayer.transform.position.y - offset < thePlatformGenerator.getMaxHeight())
+    {
+
+      cam.orthographicSize -= zoomInSpeed * Time.deltaTime;
+      cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, 5, 10);
     }
 
   }

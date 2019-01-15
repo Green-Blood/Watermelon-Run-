@@ -120,7 +120,7 @@ public class PowerUpManager : MonoBehaviour
   public void spikeTrigger(bool cond)
   {
 
-    Debug.Log("SPIKE TRIGGER " + cond);
+    //Debug.Log("SPIKE TRIGGER " + cond);
     spikeCollider = FindObjectsOfType<SpikeScript>();
     //theShieldController.setActive(cond);
     theShieldController.gameObject.SetActive(cond);
