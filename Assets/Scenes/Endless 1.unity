@@ -1972,7 +1972,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df87f4c8bdc454441b0292fbdb373f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thePlayer: {fileID: 0}
+  offset: 2
+  minZoom: 5
+  maxZoom: 10
+  zoomOutSpeed: 3
+  zoomInSpeed: 1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2474,7 +2478,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 057ec2e509455cd4486ed90062e97064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doublePoints: 0
+  safeMode: 0
   shield: 0
+  rocketSpeed: 0
   spikeCollider:
   - {fileID: 0}
   theShieldController: {fileID: 242911439}
